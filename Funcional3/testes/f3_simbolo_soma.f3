@@ -1,0 +1,2 @@
+// esperado: complex(x + 3, 2 + y)
+let var z1 = complex(sym("x"), 2), var z2 = complex(3, sym("y")) in z1 + z2

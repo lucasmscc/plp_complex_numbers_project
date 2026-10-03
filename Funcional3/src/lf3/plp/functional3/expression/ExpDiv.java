@@ -7,6 +7,7 @@ import lf3.plp.expressions2.expression.Expressao;
 import lf3.plp.expressions2.expression.Valor;
 import lf3.plp.expressions2.expression.ValorComplexo;
 import lf3.plp.expressions2.expression.ValorInteiro;
+import lf3.plp.expressions2.expression.ValorSimbolico;
 import lf3.plp.expressions2.memory.AmbienteCompilacao;
 import lf3.plp.expressions2.memory.AmbienteExecucao;
 import lf3.plp.expressions2.memory.VariavelJaDeclaradaException;
@@ -40,6 +41,9 @@ public class ExpDiv extends ExpBinaria {
 		Valor dirAvaliado = getDir().avaliar(amb);
 		if (esqAvaliado instanceof ValorComplexo || dirAvaliado instanceof ValorComplexo) {
 			return ValorComplexo.div(ValorComplexo.promover(esqAvaliado), ValorComplexo.promover(dirAvaliado));
+		}
+		if (esqAvaliado instanceof ValorSimbolico || dirAvaliado instanceof ValorSimbolico) {
+			return new ValorSimbolico(new ExpDiv(getEsq(), getDir()));
 		}
 		int divisor = ((ValorInteiro) dirAvaliado).valor();
 		if (divisor == 0) {
