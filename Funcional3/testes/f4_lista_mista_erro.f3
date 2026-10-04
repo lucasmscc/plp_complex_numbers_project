@@ -1,0 +1,2 @@
+// esperado: erro-tipo
+[complex(1, 2), 3]

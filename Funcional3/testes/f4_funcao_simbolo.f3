@@ -1,0 +1,2 @@
+// esperado: x
+let fun identidade x = x in identidade(sym("x"))

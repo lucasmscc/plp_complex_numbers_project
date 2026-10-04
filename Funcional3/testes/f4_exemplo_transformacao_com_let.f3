@@ -1,0 +1,2 @@
+// esperado: complex(6, 8)
+let var z = complex(3, 4) in let var conjugado = conj(z) in let var parteReal = re(z) + re(conjugado) in let var diferencaImaginaria = im(z) - im(conjugado) in complex(parteReal, diferencaImaginaria)

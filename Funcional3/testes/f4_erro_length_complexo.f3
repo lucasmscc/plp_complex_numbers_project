@@ -1,0 +1,2 @@
+// esperado: erro-tipo
+length (complex(1, 0))

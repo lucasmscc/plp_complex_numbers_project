@@ -1,0 +1,2 @@
+// esperado: erro-tipo
+let fun parte z = re(z) in parte(true)

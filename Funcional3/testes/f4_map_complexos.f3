@@ -1,0 +1,2 @@
+// esperado: [complex(1, -2), complex(3, -4)]
+let fun conjugar z = conj(z), fun map f xs = if xs == [] then [] else let var h = head xs, var t = tail xs in f(h) : map(f, t) in map(conjugar, [complex(1, 2), complex(3, 4)])

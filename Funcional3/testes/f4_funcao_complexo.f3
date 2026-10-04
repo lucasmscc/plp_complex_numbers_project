@@ -1,0 +1,2 @@
+// esperado: complex(5, 4)
+let fun desloca z = complex(re(z) + 1, im(z) - 2) in desloca(complex(4, 6))
