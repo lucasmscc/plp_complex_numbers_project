@@ -6,6 +6,7 @@ import lf3.plp.expressions2.memory.AmbienteCompilacao;
 import lf3.plp.expressions2.memory.AmbienteExecucao;
 import lf3.plp.expressions2.memory.VariavelJaDeclaradaException;
 import lf3.plp.expressions2.memory.VariavelNaoDeclaradaException;
+import lf3.plp.functional3.expression.ValorComplexo;
 
 /**
 * Um objeto desta classe representa uma Expressao de Subtracao.
@@ -31,7 +32,7 @@ public class ExpSub extends ExpBinaria {
 		Valor esqAvaliado = getEsq().avaliar(amb);
 		Valor dirAvaliado = getDir().avaliar(amb);
 		if (esqAvaliado instanceof ValorComplexo || dirAvaliado instanceof ValorComplexo) {
-			return ValorComplexo.sub(ValorComplexo.promover(esqAvaliado), ValorComplexo.promover(dirAvaliado), amb);
+			return ValorComplexo.sub(ValorComplexo.promover(esqAvaliado), ValorComplexo.promover(dirAvaliado));
 		}
 		return new ValorInteiro(
 				((ValorInteiro) esqAvaliado).valor() -
