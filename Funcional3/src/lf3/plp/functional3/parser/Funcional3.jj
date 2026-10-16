@@ -29,8 +29,6 @@ import lf3.plp.expressions2.expression.Valor;
 import lf3.plp.expressions2.expression.ValorInteiro;
 import lf3.plp.expressions2.expression.ValorString;
 import lf3.plp.expressions2.expression.ValorBooleano;
-import lf3.plp.expressions2.expression.ValorSimbolico;
-import lf3.plp.expressions2.expression.ValorComplexo;
 import lf3.plp.expressions2.expression.Id;
 import lf3.plp.expressions2.expression.ExpMenos;
 import lf3.plp.expressions2.expression.ExpNot;
@@ -41,6 +39,8 @@ import lf3.plp.expressions2.expression.ExpAnd;
 import lf3.plp.expressions2.expression.ExpOr;
 import lf3.plp.expressions2.expression.ExpEquals;
 import lf3.plp.expressions2.expression.ExpConcat;
+import lf3.plp.functional3.expression.ValorSimbolico;
+import lf3.plp.functional3.expression.ValorComplexo;
 import lf3.plp.functional3.expression.ExpComplexa;
 import lf3.plp.functional3.expression.ExpRe;
 import lf3.plp.functional3.expression.ExpConj;
@@ -568,6 +568,41 @@ Expressao PExpLength() :
       ValorString val = (ValorString) retorno;
     }
     return new ExpLength(retorno);
+  }
+}
+
+List PListaParesSubstituicao() :
+{
+  List lista = new ArrayList();
+  ParSubstituicao par;
+}
+{
+  par = PParSubstituicao()
+  {
+    lista.add(par);
+  }
+  (
+    < COMMA > par = PParSubstituicao()
+    {
+      lista.add(par);
+    }
+  )*
+  {
+    return lista;
+  }
+}
+
+ParSubstituicao PParSubstituicao() :
+{
+  Token token;
+  Expressao expr;
+}
+{
+  < LPAREN > token = < STRING_LITERAL > < COMMA > expr = PExpressao() < RPAREN >
+  {
+    String s = token.toString();
+    s = s.substring(1, s.length() - 1);
+    return new ParSubstituicao(s, expr);
   }
 }
 
