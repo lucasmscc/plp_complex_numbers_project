@@ -893,6 +893,9 @@ Expressao PExpUnaria() :
     LOOKAHEAD(< SIMPLIFY >)
     retorno = PExpSimplify()
   | 
+    LOOKAHEAD(< EVAL >)
+    retorno = PExpEval()
+  | 
     LOOKAHEAD(PExpPrimaria())
     retorno = PExpPrimaria()
   )
