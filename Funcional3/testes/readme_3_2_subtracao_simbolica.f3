@@ -1,0 +1,2 @@
+// esperado: complex(a - c, b - d)
+let var z1 = complex(sym("a"), sym("b")), var z2 = complex(sym("c"), sym("d")) in z1 - z2
