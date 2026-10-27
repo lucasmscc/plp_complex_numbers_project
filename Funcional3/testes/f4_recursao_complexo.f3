@@ -1,0 +1,2 @@
+// esperado: complex(6, 9)
+let fun acumula z n = if n == 0 then complex(0, 0) else complex(re(z) + re(acumula(z, n - 1)), im(z) + im(acumula(z, n - 1))) in acumula(complex(2, 3), 3)

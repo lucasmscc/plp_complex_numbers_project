@@ -1,0 +1,2 @@
+// esperado: complex(5 * x, 20)
+simplify(complex(sym("x"), 4) * 5)

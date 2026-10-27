@@ -7,6 +7,13 @@ import lf3.plp.expressions2.expression.Valor;
 import lf3.plp.expressions2.expression.ValorInteiro;
 import lf3.plp.expressions2.memory.AmbienteCompilacao;
 import lf3.plp.expressions2.memory.AmbienteExecucao;
+<<<<<<< HEAD:Funcional3/src/lf3/plp/functional3/expression/ValorComplexo.java
+=======
+import lf3.plp.expressions2.memory.VariavelJaDeclaradaException;
+import lf3.plp.expressions2.memory.VariavelNaoDeclaradaException;
+import lf3.plp.functional3.expression.ExpDiv;
+import lf3.plp.functional3.expression.ExpMult;
+>>>>>>> 5550392f55f27b9d618f6075415c10446be9b53e:Funcional3/src/lf3/plp/expressions2/expression/ValorComplexo.java
 
 /**
  * Objetos desta classe encapsulam um numero complexo <code>a + bi</code>.
@@ -72,15 +79,34 @@ public class ValorComplexo implements Valor {
 	/**
 	 * Multiplicacao de dois complexos:
 	 * <code>(a + bi)(c + di) = (ac - bd) + (ad + bc)i</code>.
+<<<<<<< HEAD:Funcional3/src/lf3/plp/functional3/expression/ValorComplexo.java
 	 * Usa <code>ValorSimbolico</code> para que partes inteiras e simbolicas
 	 * sigam o mesmo caminho.
 	 */
 	public static ValorComplexo mult(ValorComplexo esq, ValorComplexo dir) {
 		Valor a = esq.real, b = esq.imag;
 		Valor c = dir.real, d = dir.imag;
+=======
+	 * Quando alguma parte e simbolica, devolve uma expressao residual em vez de
+	 * converter tudo para inteiro.
+	 */
+	public static ValorComplexo mult(ValorComplexo esq, ValorComplexo dir) {
+		if (esq.real instanceof ValorSimbolico || esq.imag instanceof ValorSimbolico
+				|| dir.real instanceof ValorSimbolico || dir.imag instanceof ValorSimbolico) {
+			return multResidual(esq, dir);
+		}
+		int a = inteiro(esq.real), b = inteiro(esq.imag);
+		int c = inteiro(dir.real), d = inteiro(dir.imag);
+>>>>>>> 5550392f55f27b9d618f6075415c10446be9b53e:Funcional3/src/lf3/plp/expressions2/expression/ValorComplexo.java
 		return new ValorComplexo(
 			ValorSimbolico.sub(ValorSimbolico.mult(a, c), ValorSimbolico.mult(b, d)),
 			ValorSimbolico.soma(ValorSimbolico.mult(a, d), ValorSimbolico.mult(b, c)));
+	}
+
+	public static ValorComplexo multResidual(ValorComplexo esq, ValorComplexo dir) {
+		return new ValorComplexo(
+			new ValorSimbolico(new ExpSub(new ExpMult(esq.real, dir.real), new ExpMult(esq.imag, dir.imag))),
+			new ValorSimbolico(new ExpSoma(new ExpMult(esq.real, dir.imag), new ExpMult(esq.imag, dir.real))));
 	}
 
 	/**
@@ -92,10 +118,21 @@ public class ValorComplexo implements Valor {
 	 * @throws ArithmeticException se o divisor for <code>complex(0, 0)</code>.
 	 */
 	public static ValorComplexo div(ValorComplexo esq, ValorComplexo dir) {
+<<<<<<< HEAD:Funcional3/src/lf3/plp/functional3/expression/ValorComplexo.java
 		Valor a = esq.real, b = esq.imag;
 		Valor c = dir.real, d = dir.imag;
 		Valor divisor = ValorSimbolico.soma(ValorSimbolico.mult(c, c), ValorSimbolico.mult(d, d));
 		if (divisor instanceof ValorInteiro && ((ValorInteiro) divisor).valor() == 0) {
+=======
+		if (esq.real instanceof ValorSimbolico || esq.imag instanceof ValorSimbolico
+				|| dir.real instanceof ValorSimbolico || dir.imag instanceof ValorSimbolico) {
+			return divResidual(esq, dir);
+		}
+		int a = inteiro(esq.real), b = inteiro(esq.imag);
+		int c = inteiro(dir.real), d = inteiro(dir.imag);
+		int divisor = c * c + d * d;
+		if (divisor == 0) {
+>>>>>>> 5550392f55f27b9d618f6075415c10446be9b53e:Funcional3/src/lf3/plp/expressions2/expression/ValorComplexo.java
 			throw new ArithmeticException("divisao por zero: divisor complexo nulo");
 		}
 		return new ValorComplexo(
@@ -110,6 +147,13 @@ public class ValorComplexo implements Valor {
 	 */
 	public static ValorComplexo conj(ValorComplexo z) {
 		return new ValorComplexo(z.real, ValorSimbolico.neg(z.imag));
+	}
+
+	public static ValorComplexo divResidual(ValorComplexo esq, ValorComplexo dir) {
+		Expressao divisor = new ExpSoma(new ExpMult(dir.real, dir.real), new ExpMult(dir.imag, dir.imag));
+		return new ValorComplexo(
+			new ValorSimbolico(new ExpDiv(new ExpSoma(new ExpMult(esq.real, dir.real), new ExpMult(esq.imag, dir.imag)), divisor)),
+			new ValorSimbolico(new ExpDiv(new ExpSub(new ExpMult(esq.imag, dir.real), new ExpMult(esq.real, dir.imag)), divisor)));
 	}
 
 	/**

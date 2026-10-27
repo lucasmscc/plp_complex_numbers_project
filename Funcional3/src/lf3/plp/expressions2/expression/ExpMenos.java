@@ -33,7 +33,11 @@ public class ExpMenos extends ExpUnaria {
 	 */
 	public Valor avaliar(AmbienteExecucao amb) throws VariavelJaDeclaradaException, 
 			VariavelNaoDeclaradaException {
-		return new ValorInteiro(- ((ValorInteiro)getExp().avaliar(amb)).valor());
+		Valor valor = getExp().avaliar(amb);
+		if (valor instanceof ValorSimbolico) {
+			return new ValorSimbolico(new ExpMenos(((ValorSimbolico) valor).getExpressao()));
+		}
+		return new ValorInteiro(- ((ValorInteiro) valor).valor());
 	}
 
 	/**

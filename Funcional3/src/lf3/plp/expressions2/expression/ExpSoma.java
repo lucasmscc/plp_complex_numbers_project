@@ -33,6 +33,9 @@ public class ExpSoma extends ExpBinaria {
 		if (esqAvaliado instanceof ValorComplexo || dirAvaliado instanceof ValorComplexo) {
 			return ValorComplexo.soma(ValorComplexo.promover(esqAvaliado), ValorComplexo.promover(dirAvaliado));
 		}
+		if (esqAvaliado instanceof ValorSimbolico || dirAvaliado instanceof ValorSimbolico) {
+			return new ValorSimbolico(new ExpSoma(getEsq(), getDir()));
+		}
 		return new ValorInteiro(
 			((ValorInteiro) esqAvaliado).valor() +
 			((ValorInteiro) dirAvaliado).valor() );

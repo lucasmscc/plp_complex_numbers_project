@@ -1,0 +1,2 @@
+// esperado: complex(4, 6)
+let fun soma z w = complex(re(z) + re(w), im(z) + im(w)), fun fold f acc xs = if xs == [] then acc else let var h = head xs, var t = tail xs in fold(f, f(acc, h), t) in fold(soma, complex(0, 0), [complex(1, 2), complex(3, 4)])

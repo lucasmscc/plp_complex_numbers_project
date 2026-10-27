@@ -34,6 +34,9 @@ public class ExpSub extends ExpBinaria {
 		if (esqAvaliado instanceof ValorComplexo || dirAvaliado instanceof ValorComplexo) {
 			return ValorComplexo.sub(ValorComplexo.promover(esqAvaliado), ValorComplexo.promover(dirAvaliado));
 		}
+		if (esqAvaliado instanceof ValorSimbolico || dirAvaliado instanceof ValorSimbolico) {
+			return new ValorSimbolico(new ExpSub(getEsq(), getDir()));
+		}
 		return new ValorInteiro(
 				((ValorInteiro) esqAvaliado).valor() -
 				((ValorInteiro) dirAvaliado).valor()

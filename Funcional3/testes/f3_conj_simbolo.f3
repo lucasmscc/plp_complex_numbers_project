@@ -1,0 +1,2 @@
+// esperado: complex(x, -2)
+conj(complex(sym("x"), 2))
