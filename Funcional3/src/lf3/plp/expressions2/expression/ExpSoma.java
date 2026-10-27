@@ -6,6 +6,7 @@ import lf3.plp.expressions2.memory.AmbienteCompilacao;
 import lf3.plp.expressions2.memory.AmbienteExecucao;
 import lf3.plp.expressions2.memory.VariavelJaDeclaradaException;
 import lf3.plp.expressions2.memory.VariavelNaoDeclaradaException;
+import lf3.plp.functional3.expression.ValorComplexo;
 
 /**
  * Um objeto desta classe representa uma Expressao de Soma.
@@ -30,7 +31,7 @@ public class ExpSoma extends ExpBinaria {
 		Valor esqAvaliado = getEsq().avaliar(amb);
 		Valor dirAvaliado = getDir().avaliar(amb);
 		if (esqAvaliado instanceof ValorComplexo || dirAvaliado instanceof ValorComplexo) {
-			return ValorComplexo.soma(ValorComplexo.promover(esqAvaliado), ValorComplexo.promover(dirAvaliado), amb);
+			return ValorComplexo.soma(ValorComplexo.promover(esqAvaliado), ValorComplexo.promover(dirAvaliado));
 		}
 		if (esqAvaliado instanceof ValorSimbolico || dirAvaliado instanceof ValorSimbolico) {
 			return new ValorSimbolico(new ExpSoma(getEsq(), getDir()));

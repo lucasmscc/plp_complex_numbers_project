@@ -1,0 +1,2 @@
+// esperado: complex(5*x, 20)
+let var z = complex(sym("x"), 4) in simplify(z * 5)

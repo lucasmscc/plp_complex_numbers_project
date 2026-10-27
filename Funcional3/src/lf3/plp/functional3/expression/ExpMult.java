@@ -5,7 +5,6 @@ import lf3.plp.expressions1.util.TipoPrimitivo;
 import lf3.plp.expressions2.expression.ExpBinaria;
 import lf3.plp.expressions2.expression.Expressao;
 import lf3.plp.expressions2.expression.Valor;
-import lf3.plp.expressions2.expression.ValorComplexo;
 import lf3.plp.expressions2.expression.ValorInteiro;
 import lf3.plp.expressions2.expression.ValorSimbolico;
 import lf3.plp.expressions2.memory.AmbienteCompilacao;
