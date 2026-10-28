@@ -6,6 +6,7 @@ import lf3.plp.expressions2.memory.AmbienteCompilacao;
 import lf3.plp.expressions2.memory.AmbienteExecucao;
 import lf3.plp.expressions2.memory.VariavelJaDeclaradaException;
 import lf3.plp.expressions2.memory.VariavelNaoDeclaradaException;
+import lf3.plp.functional3.expression.ValorSimbolico;
 
 /**
  * Um objeto desta classe representa uma Expressao de menos unario.
@@ -35,7 +36,7 @@ public class ExpMenos extends ExpUnaria {
 			VariavelNaoDeclaradaException {
 		Valor valor = getExp().avaliar(amb);
 		if (valor instanceof ValorSimbolico) {
-			return new ValorSimbolico(new ExpMenos(((ValorSimbolico) valor).getExpressao()));
+			return ValorSimbolico.neg(valor);
 		}
 		return new ValorInteiro(- ((ValorInteiro) valor).valor());
 	}

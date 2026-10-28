@@ -1,16 +1,13 @@
-package lf3.plp.functional3.expression;
+package lf3.plp.expressions2.expression;
 
 import lf3.plp.expressions1.util.Tipo;
 import lf3.plp.expressions1.util.TipoPrimitivo;
-import lf3.plp.expressions2.expression.ExpBinaria;
-import lf3.plp.expressions2.expression.Expressao;
-import lf3.plp.expressions2.expression.Valor;
-import lf3.plp.expressions2.expression.ValorInteiro;
-import lf3.plp.expressions2.expression.ValorSimbolico;
 import lf3.plp.expressions2.memory.AmbienteCompilacao;
 import lf3.plp.expressions2.memory.AmbienteExecucao;
 import lf3.plp.expressions2.memory.VariavelJaDeclaradaException;
 import lf3.plp.expressions2.memory.VariavelNaoDeclaradaException;
+import lf3.plp.functional3.expression.ValorComplexo;
+import lf3.plp.functional3.expression.ValorSimbolico;
 
 public class ExpMult extends ExpBinaria {
 
@@ -39,7 +36,7 @@ public class ExpMult extends ExpBinaria {
 			return ValorComplexo.mult(ValorComplexo.promover(esqAvaliado), ValorComplexo.promover(dirAvaliado));
 		}
 		if (esqAvaliado instanceof ValorSimbolico || dirAvaliado instanceof ValorSimbolico) {
-			return new ValorSimbolico(new ExpMult(getEsq(), getDir()));
+			return ValorSimbolico.mult(esqAvaliado, dirAvaliado);
 		}
 		return new ValorInteiro(((ValorInteiro) esqAvaliado).valor()
 				* ((ValorInteiro) dirAvaliado).valor());
