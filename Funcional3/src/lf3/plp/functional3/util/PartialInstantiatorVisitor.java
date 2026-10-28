@@ -15,6 +15,7 @@ import lf3.plp.expressions2.expression.ExpConcat;
 import lf3.plp.expressions2.expression.ExpEquals;
 import lf3.plp.expressions2.expression.ExpLength;
 import lf3.plp.expressions2.expression.ExpMenos;
+import lf3.plp.expressions2.expression.ExpMult;
 import lf3.plp.expressions2.expression.ExpNot;
 import lf3.plp.expressions2.expression.ExpOr;
 import lf3.plp.expressions2.expression.ExpSoma;
@@ -27,13 +28,11 @@ import lf3.plp.expressions2.expression.ValorString;
 import lf3.plp.expressions2.memory.AmbienteExecucao;
 import lf3.plp.expressions2.memory.VariavelNaoDeclaradaException;
 import lf3.plp.functional1.declaration.DecVariavel;
-import lf3.plp.functional1.declaration.DeclaracaoFuncional;
 import lf3.plp.functional1.expression.IfThenElse;
 import lf3.plp.functional3.declaration.DecPadrao;
 import lf3.plp.functional3.expression.Aplicacao;
 import lf3.plp.functional3.expression.ExpMaiorQue;
 import lf3.plp.functional3.expression.ExpMenorQue;
-import lf3.plp.functional3.expression.ExpMult;
 import lf3.plp.functional3.expression.ValorFuncao;
 
 /**
