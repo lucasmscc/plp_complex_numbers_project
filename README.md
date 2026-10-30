@@ -70,59 +70,35 @@ Para manter a ergonomia da linguagem, foi implementada uma regra de **coerção/
 ### 3.1 Instanciação SImbólica e Operações Básicas
 
 ```sml
-let
-    // Criando números complexos simbólicos: z1 = x + 2i, z2 = 3 + yi
-    var z1 = complex(sym("x"), 2)
-    var z2 = complex(3, sym("y"))
-  
-    // Adição simbólica: (x + 3) + (2 + y)i
-    var soma = z1 + z2
-  
-    // Conjugado simbólico: x - 2i
-    var z1_conj = conj(z1)
-in
-    soma
-end;
+\\ resulta: complex(x + 3, 2 + y)
+let var z1 = complex(sym("x"), 2), var z2 = complex(3, sym("y")) in
+    let var soma = z1 + z2, var z1_conj = conj(z1) in soma
 ```
 
-### 3.2 Operações SImbólicas
+### 3.2 Operações Simbólicas
 
 ```sml
-let
-    var z1 = complex(sym("a"), sym("b"))
-    var z2 = complex(sym("c"), sym("d"))
-
-    var s = z1 + z2  // Resulta: complex(a + c, b + d)
-    var sub = z1 - z2 // Resulta: complex(a - c, b - d)
-    var m = z1 * z2  // Resulta: complex(a*c - b*d, a*d + b*c)
-    var d = z1 / z2  // Resulta: complex((a*c + b*d)/(c^2 + d^2), (b*c - a*d)/(c^2 + d^2))
-in
-    d
-end;
+\\ resulta: [complex(a + c, b + d), complex(a - c, b - d), complex(a*c - b*d, a*d + b*c), complex((a*c + b*d)/(c*c + d*d), (b*c - a*d)/(c*c + d*d))]
+let var z1 = complex(sym("a"), sym("b")), var z2 = complex(sym("c"), sym("d")) in
+    let var s = z1 + z2, var sub = z1 - z2, var m = z1 * z2, var d = z1 / z2 in 
+        [s, sub, m, d]
 ```
 
 ### 3.3 Promoção de Tipos e Simplificação
 
 ```sml
-let
-    var z = complex(sym("x"), 4)
-    // Promoção implícita do inteiro 5 para complex(5, 0) na multiplicação simbólica
-    var expr = simplify(z * 5)
-in
-    expr // Resulta em: complex(5*x, 20)
-end;
+\\ resulta: complex(5*x, 20)
+let var z = complex(sym("x"), 4) in
+    let var expr = simplify(z * 5) in expr
 ```
 
 ### 3.4 Avaliação (Substituição de Símbolos)
 
 ```sml
-let
-    var z_simbolico = complex(sym("x"), sym("y")) * complex(2, 1)
-    // Avalia substituindo x=1 e y=3 na expressão simbólica gerada
-    var z_avaliado = eval(z_simbolico, [("x", 1), ("y", 3)])
-in
-    z_avaliado
-end;
+\\ resulta: complex(-1, 7)
+let var z_simbolico = complex(sym("x"), sym("y")) * complex(2, 1) in
+    let var z_avaliado = eval(z_simbolico, [("x", 1), ("y", 3)]) in
+        z_avaliado
 ```
 
 ## 4. Gramática
