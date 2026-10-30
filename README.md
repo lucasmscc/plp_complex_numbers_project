@@ -127,92 +127,94 @@ end;
 
 ## 4. Gramática
 
-```ebnf
-Programa ::= Expressao
+Cada símbolo não terminal e cada operador/palavra-chave que corresponde a uma classe é um link para o código-fonte (`Ctrl+clique` no VS Code; clique normal no GitHub). `ListId`, `ListExp` e `Filtro` não têm classe própria e apontam para a produção correspondente em [Funcional3.jj](Funcional3/src/lf3/plp/functional3/parser/Funcional3.jj).
 
-Expressao ::= Valor
-           | ExpUnaria
-           | ExpBinaria
-           | ExpDeclaracao
-           | Id
-           | Aplicacao
-           | IfThenElse
+<pre>
+<a href="Funcional3/src/lf3/plp/functional3/Programa.java">Programa</a> ::= <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
 
-Valor ::= ValorConcreto
-        | ValorSimbolico
-        | ValorAbstrato
+<a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> ::= <a href="Funcional3/src/lf3/plp/expressions2/expression/Valor.java">Valor</a>
+           | <a href="Funcional3/src/lf3/plp/expressions2/expression/ExpUnaria.java">ExpUnaria</a>
+           | <a href="Funcional3/src/lf3/plp/expressions2/expression/ExpBinaria.java">ExpBinaria</a>
+           | <a href="Funcional3/src/lf3/plp/functional2/expression/ExpDeclaracao.java">ExpDeclaracao</a>
+           | <a href="Funcional3/src/lf3/plp/expressions2/expression/Id.java">Id</a>
+           | <a href="Funcional3/src/lf3/plp/functional2/expression/Aplicacao.java">Aplicacao</a>
+           | <a href="Funcional3/src/lf3/plp/functional1/expression/IfThenElse.java">IfThenElse</a>
 
-ValorAbstrato ::= ValorFuncao
+<a href="Funcional3/src/lf3/plp/expressions2/expression/Valor.java">Valor</a> ::= <a href="Funcional3/src/lf3/plp/expressions2/expression/ValorConcreto.java">ValorConcreto</a>
+        | <a href="Funcional3/src/lf3/plp/functional3/expression/ValorSimbolico.java">ValorSimbolico</a>
+        | <a href="Funcional3/src/lf3/plp/functional2/expression/ValorAbstrato.java">ValorAbstrato</a>
 
-ValorConcreto ::= ValorInteiro
-                | ValorBooleano
-                | ValorString
-                | ValorLista
-                | ValorComplexo
+<a href="Funcional3/src/lf3/plp/functional2/expression/ValorAbstrato.java">ValorAbstrato</a> ::= <a href="Funcional3/src/lf3/plp/functional2/expression/ValorFuncao.java">ValorFuncao</a>
 
-ValorSimbolico ::= "sym" "(" StringLiteral ")"
+<a href="Funcional3/src/lf3/plp/expressions2/expression/ValorConcreto.java">ValorConcreto</a> ::= <a href="Funcional3/src/lf3/plp/expressions2/expression/ValorInteiro.java">ValorInteiro</a>
+                | <a href="Funcional3/src/lf3/plp/expressions2/expression/ValorBooleano.java">ValorBooleano</a>
+                | <a href="Funcional3/src/lf3/plp/expressions2/expression/ValorString.java">ValorString</a>
+                | <a href="Funcional3/src/lf3/plp/functional3/expression/ValorLista.java">ValorLista</a>
+                | <a href="Funcional3/src/lf3/plp/functional3/expression/ValorComplexo.java">ValorComplexo</a>
 
-ValorFuncao ::= "fn" Id Id "." Expressao
+<a href="Funcional3/src/lf3/plp/functional3/expression/ValorSimbolico.java">ValorSimbolico</a> ::= "sym" "(" StringLiteral ")"
 
-ValorComplexo ::= "complex" "(" Expressao "," Expressao ")"
+<a href="Funcional3/src/lf3/plp/functional2/expression/ValorFuncao.java">ValorFuncao</a> ::= "fn" <a href="Funcional3/src/lf3/plp/expressions2/expression/Id.java">Id</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Id.java">Id</a> "." <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
 
-ExpUnaria ::= "-" Expressao
-            | "not" Expressao
-            | "length" Expressao
-            | "head" "(" Expressao ")"
-            | "tail" "(" Expressao ")"
-            | "re" "(" Expressao ")"
-            | "im" "(" Expressao ")"
-            | "abs" "(" Expressao ")"
-            | "conj" "(" Expressao ")"
-            | "simplify" "(" Expressao ")"
-            | ExpCompreensaoLista
+<a href="Funcional3/src/lf3/plp/functional3/expression/ValorComplexo.java">ValorComplexo</a> ::= <a href="Funcional3/src/lf3/plp/functional3/expression/ExpComplexa.java">"complex"</a> "(" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> "," <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> ")"
 
-ExpCompreensaoLista ::= Expressao Gerador
-                      | Expressao Gerador Filtro
+<a href="Funcional3/src/lf3/plp/expressions2/expression/ExpUnaria.java">ExpUnaria</a> ::= <a href="Funcional3/src/lf3/plp/expressions2/expression/ExpMenos.java">"-"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+            | <a href="Funcional3/src/lf3/plp/expressions2/expression/ExpNot.java">"not"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+            | <a href="Funcional3/src/lf3/plp/expressions2/expression/ExpLength.java">"length"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+            | <a href="Funcional3/src/lf3/plp/functional3/expression/ExpHead.java">"head"</a> "(" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> ")"
+            | <a href="Funcional3/src/lf3/plp/functional3/expression/ExpTail.java">"tail"</a> "(" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> ")"
+            | <a href="Funcional3/src/lf3/plp/functional3/expression/ExpRe.java">"re"</a> "(" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> ")"
+            | <a href="Funcional3/src/lf3/plp/functional3/expression/ExpIm.java">"im"</a> "(" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> ")"
+            | <a href="Funcional3/src/lf3/plp/functional3/expression/ExpAbs.java">"abs"</a> "(" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> ")"
+            | <a href="Funcional3/src/lf3/plp/functional3/expression/ExpConj.java">"conj"</a> "(" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> ")"
+            | <a href="Funcional3/src/lf3/plp/functional3/expression/ExpSimplify.java">"simplify"</a> "(" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> ")"
+            | <a href="Funcional3/src/lf3/plp/functional3/expression/ExpCompreensaoLista.java">ExpCompreensaoLista</a>
 
-Gerador ::= "for" Id "in" Expressao
-          | "for" Id "in" Expressao "," Gerador
+<a href="Funcional3/src/lf3/plp/functional3/expression/ExpCompreensaoLista.java">ExpCompreensaoLista</a> ::= <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/functional3/expression/Gerador.java">Gerador</a>
+                      | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/functional3/expression/Gerador.java">Gerador</a> <a href="Funcional3/src/lf3/plp/functional3/parser/Funcional3.jj#L835">Filtro</a>
 
-Filtro ::= "if" Expressao
+<a href="Funcional3/src/lf3/plp/functional3/expression/Gerador.java">Gerador</a> ::= "for" <a href="Funcional3/src/lf3/plp/expressions2/expression/Id.java">Id</a> "in" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+          | "for" <a href="Funcional3/src/lf3/plp/expressions2/expression/Id.java">Id</a> "in" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> "," <a href="Funcional3/src/lf3/plp/functional3/expression/Gerador.java">Gerador</a>
 
-ExpBinaria ::= Expressao "+" Expressao
-             | Expressao "-" Expressao
-             | Expressao "*" Expressao
-             | Expressao "/" Expressao
-             | Expressao ">" Expressao
-             | Expressao "<" Expressao
-             | Expressao "and" Expressao
-             | Expressao "or" Expressao
-             | Expressao "==" Expressao
-             | Expressao "++" Expressao
-             | Expressao ".." Expressao
-             | Expressao ":" Expressao
-             | Expressao "^^" Expressao
-             | "eval" "(" Expressao "," ListaPares Substituicao ")"
+<a href="Funcional3/src/lf3/plp/functional3/parser/Funcional3.jj#L835">Filtro</a> ::= "if" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
 
-ListaParesSubstituicao ::= "[" ParSubstituicao "]"
-                         | "[" ParSubstituicao ("," ParSubstituicao)* "]"
+<a href="Funcional3/src/lf3/plp/expressions2/expression/ExpBinaria.java">ExpBinaria</a> ::= <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/ExpSoma.java">"+"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+             | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/ExpSub.java">"-"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+             | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/ExpMult.java">"*"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+             | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/ExpDiv.java">"/"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+             | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/functional3/expression/ExpMaiorQue.java">"&gt;"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+             | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/functional3/expression/ExpMenorQue.java">"&lt;"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+             | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/ExpAnd.java">"and"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+             | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/ExpOr.java">"or"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+             | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/ExpEquals.java">"=="</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+             | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/ExpConcat.java">"++"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+             | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/functional3/expression/ExpSequencia.java">".."</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+             | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/functional3/expression/ExpCons.java">":"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+             | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> <a href="Funcional3/src/lf3/plp/functional3/expression/ExpConcatLista.java">"^^"</a> <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+             | <a href="Funcional3/src/lf3/plp/functional3/expression/ExpEval.java">"eval"</a> "(" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> "," "[" <a href="Funcional3/src/lf3/plp/functional3/expression/ExpEval.java">ListaParesSubstituicao</a> "]" ")"
 
-ParSubstituicao ::= "(" StringLiteral "," Expressao ")"
+<a href="Funcional3/src/lf3/plp/functional3/expression/ExpEval.java">ListaParesSubstituicao</a> ::= "[" <a href="Funcional3/src/lf3/plp/functional3/expression/ParSubstituicao.java">ParSubstituicao</a> "]"
+                         | "[" <a href="Funcional3/src/lf3/plp/functional3/expression/ParSubstituicao.java">ParSubstituicao</a> ("," <a href="Funcional3/src/lf3/plp/functional3/expression/ParSubstituicao.java">ParSubstituicao</a>)* "]"
 
-ExpDeclaracao ::= "let" DeclaracaoFuncional "in" Expressao
+<a href="Funcional3/src/lf3/plp/functional3/expression/ParSubstituicao.java">ParSubstituicao</a> ::= "(" StringLiteral "," <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> ")"
 
-DeclaracaoFuncional ::= DecVariavel
-                      | DecFuncao
-                      | DecComposta
+<a href="Funcional3/src/lf3/plp/functional2/expression/ExpDeclaracao.java">ExpDeclaracao</a> ::= "let" <a href="Funcional3/src/lf3/plp/functional1/declaration/DeclaracaoFuncional.java">DeclaracaoFuncional</a> "in" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
 
-DecVariavel ::= "var" Id "=" Expressao
+<a href="Funcional3/src/lf3/plp/functional1/declaration/DeclaracaoFuncional.java">DeclaracaoFuncional</a> ::= <a href="Funcional3/src/lf3/plp/functional1/declaration/DecVariavel.java">DecVariavel</a>
+                      | <a href="Funcional3/src/lf3/plp/functional2/declaration/DecFuncao.java">DecFuncao</a>
+                      | <a href="Funcional3/src/lf3/plp/functional3/declaration/DecComposta.java">DecComposta</a>
 
-DecFuncao ::= "fun" ListId "=" Expressao
+<a href="Funcional3/src/lf3/plp/functional1/declaration/DecVariavel.java">DecVariavel</a> ::= "var" <a href="Funcional3/src/lf3/plp/expressions2/expression/Id.java">Id</a> "=" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
 
-DecComposta ::= DeclaracaoFuncional "," DeclaracaoFuncional
+<a href="Funcional3/src/lf3/plp/functional2/declaration/DecFuncao.java">DecFuncao</a> ::= "fun" <a href="Funcional3/src/lf3/plp/functional3/parser/Funcional3.jj#L648">ListId</a> "=" <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
 
-ListId ::= Id
-        | Id "," ListId
+<a href="Funcional3/src/lf3/plp/functional3/declaration/DecComposta.java">DecComposta</a> ::= <a href="Funcional3/src/lf3/plp/functional1/declaration/DeclaracaoFuncional.java">DeclaracaoFuncional</a> "," <a href="Funcional3/src/lf3/plp/functional1/declaration/DeclaracaoFuncional.java">DeclaracaoFuncional</a>
 
-Aplicacao ::= Expressao "(" ListExp ")"
+<a href="Funcional3/src/lf3/plp/functional3/parser/Funcional3.jj#L648">ListId</a> ::= <a href="Funcional3/src/lf3/plp/expressions2/expression/Id.java">Id</a>
+        | <a href="Funcional3/src/lf3/plp/expressions2/expression/Id.java">Id</a> "," <a href="Funcional3/src/lf3/plp/functional3/parser/Funcional3.jj#L648">ListId</a>
 
-ListExp ::= Expressao
-        | Expressao "," ListExp
-```
+<a href="Funcional3/src/lf3/plp/functional2/expression/Aplicacao.java">Aplicacao</a> ::= <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> "(" <a href="Funcional3/src/lf3/plp/functional3/parser/Funcional3.jj#L761">ListExp</a> ")"
+
+<a href="Funcional3/src/lf3/plp/functional3/parser/Funcional3.jj#L761">ListExp</a> ::= <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a>
+        | <a href="Funcional3/src/lf3/plp/expressions2/expression/Expressao.java">Expressao</a> "," <a href="Funcional3/src/lf3/plp/functional3/parser/Funcional3.jj#L761">ListExp</a>
+</pre>
